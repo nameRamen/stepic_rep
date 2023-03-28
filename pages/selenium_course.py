@@ -5,7 +5,7 @@ from pages.base_page import Initial
 class UnitLesson(Initial):
     locator = UnittestLocators()
 
-    def registration_required_fields(self):
+    def filling_fields_and_getting_actual_text(self):
         self.element_is_visible(self.locator.FIRST_NAME).send_keys('Roman Sechin')
         self.element_is_visible(self.locator.EMAIL).send_keys('RomanSechin@gmail.com')
         self.element_is_visible(self.locator.SUBMIT_BUTTON).click()

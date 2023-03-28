@@ -6,6 +6,6 @@ class TestSeleniumCourse:
     def test_registration(self, driver):
         unittests_lesson = UnitLesson(driver, "http://suninjuly.github.io/registration2.html")
         unittests_lesson.open()
-        actual_text = unittests_lesson.registration_required_fields()
+        actual_text = unittests_lesson.filling_fields_and_getting_actual_text()
         expected_text = "Congratulations! You have successfully registered!"
         assert actual_text == expected_text, "Actual text doesn't match with expected text"
