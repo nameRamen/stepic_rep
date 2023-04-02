@@ -1,3 +1,6 @@
+import math
+
+from selenium.common import NoAlertPresentException
 from selenium.webdriver.support.ui import WebDriverWait as wait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -30,3 +33,20 @@ class BasePage:
 
     def go_to_element(self, element):  # Скролл до элемента
         self.driver.execute_script("arguments[0].scrollIntoView;", element)
+
+    def get_current_page_url(self):  # Получаем текущий URL
+        return self.driver.current_url
+
+    def solve_quiz_and_get_code(self):  # Решаем квиз Степика
+        alert = self.driver.switch_to.alert
+        x = alert.text.split(" ")[2]
+        answer = str(math.log(abs((12 * math.sin(float(x))))))
+        alert.send_keys(answer)
+        alert.accept()
+        try:
+            alert = self.driver.switch_to.alert
+            alert_text = alert.text
+            print(f"Your code: {alert_text}")
+            alert.accept()
+        except NoAlertPresentException:
+            print("No second alert presented")
