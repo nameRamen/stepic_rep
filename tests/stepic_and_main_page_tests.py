@@ -3,7 +3,7 @@ import pytest
 from pages.main_page import RegistrationLesson, AuthLesson, MainPage, LoginPage
 
 
-class TestSeleniumCourse:
+class TestStepicCourse:
 
     @pytest.mark.parametrize('link', ['registration1', 'registration2'])
     def test_registration_page(self, driver, link):
@@ -21,6 +21,9 @@ class TestSeleniumCourse:
         actual_feedback = page.get_feedback()
         expected_feedback = 'Correct!'
         assert actual_feedback == expected_feedback, "Feed back is incorrect"
+
+
+class TestMainPage:
 
     def test_guest_can_go_to_login_page(self, driver):
         page = MainPage(driver, "http://selenium1py.pythonanywhere.com/")
